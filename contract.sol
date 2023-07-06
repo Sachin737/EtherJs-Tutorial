@@ -5,6 +5,11 @@ contract wallet {
     //read
     string public name = "wallet";
     uint num;
+    address owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
 
     //write
     function setValue(uint _num) public {
@@ -25,8 +30,9 @@ contract wallet {
     }
 
     //write
-    function sendEthUser(address _user) public payable {
-        payable(_user).transfer(msg.value);
+    function sendEthUser(address receiver, uint256 amount) public payable {
+        address payable to = payable(receiver);
+        to.transfer(amount);
     }
 
     //read
@@ -34,5 +40,3 @@ contract wallet {
         return (_address).balance;
     }
 }
-
-
