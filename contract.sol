@@ -22,7 +22,7 @@ contract wallet {
     }
 
     //write
-    function sendEthContract() public payable {}
+    function sendEthContract() public payable { }
 
     //read
     function contractBalance() public view returns (uint) {
@@ -39,4 +39,13 @@ contract wallet {
     function accountBalance(address _address) public view returns (uint) {
         return (_address).balance;
     }
+
+    // Events
+
+    event balance(address account,uint value);
+
+    function setData(uint _val) public{
+        emit balance(msg.sender, _val); 
+    }
+
 }
